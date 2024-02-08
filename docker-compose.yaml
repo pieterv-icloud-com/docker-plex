@@ -1,0 +1,19 @@
+# https://github.com/plexinc/pms-docker/blob/master/README.md
+version: "3.8"
+
+services:
+  plex:
+    image: plexinc/pms-docker:plexpass
+    container_name: plex
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Africa/Harare
+      - PLEX_CLAIM=claim-xxxxxxxxxxxxxxxxxxxx
+      - PLEX_UID=1000
+      - PLEX_GID=1000
+    volumes:
+      - /home/pieter/repos/docker-plex/plex:/config
+      - /home/pieter/repos/docker-plex/transcode:/transcode
+      - /home/pieter/repos/docker-plex/media:/data
+      - /run/media/pieter:/media
